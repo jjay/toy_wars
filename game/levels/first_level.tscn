@@ -1,0 +1,191 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://tiles/grass.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tiles/road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tiles/water.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+transform/scale = Vector2( 0.7, 0.7 )
+
+[node name="Grass" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5714, 60.5714 )
+
+[node name="Grass1" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 60.5714 )
+
+[node name="Grass3" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5714, 189.143 )
+
+[node name="Grass4" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 189.143 )
+
+[node name="Grass2" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 317.714, 60.5714 )
+
+[node name="Road" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 446.286, 60.5714 )
+
+[node name="Water" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 574.857, 60.5714 )
+
+[node name="Water1" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 574.857, 189.143 )
+
+[node name="Water2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 574.857, 317.714 )
+
+[node name="Road1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 446.286, 189.143 )
+
+[node name="Road2" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 446.286, 317.714 )
+
+[node name="Road3" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 446.286, 446.286 )
+
+[node name="Water3" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 317.714, 317.714 )
+
+[node name="Grass5" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 317.714, 189.143 )
+
+[node name="Water4" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 189.143, 317.714 )
+
+[node name="Water5" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 60.5714, 317.714 )
+
+[node name="Road4" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 446.286, 574.857 )
+
+[node name="Road5" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 446.286, 703.429 )
+
+[node name="Road6" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 574.857, 703.429 )
+
+[node name="Road7" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 317.714, 703.429 )
+
+[node name="Road8" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 317.714, 832 )
+
+[node name="Road9" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 317.714, 960.571 )
+
+[node name="Road10" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 317.714, 1089.14 )
+
+[node name="Water6" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 446.286, 960.571 )
+
+[node name="Water7" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 574.857, 960.571 )
+
+[node name="Water8" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 189.143, 960.571 )
+
+[node name="Water9" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 60.5714, 960.571 )
+
+[node name="Grass6" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 317.714, 446.286 )
+
+[node name="Grass7" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 446.286 )
+
+[node name="Grass8" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5714, 446.286 )
+
+[node name="Grass9" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 574.857, 446.286 )
+
+[node name="Grass10" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 574.857, 574.857 )
+
+[node name="Grass11" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 317.714, 574.857 )
+
+[node name="Grass12" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 574.857 )
+
+[node name="Grass13" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5715, 574.857 )
+
+[node name="Grass14" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5714, 703.429 )
+
+[node name="Grass15" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 703.429 )
+
+[node name="Grass16" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 832 )
+
+[node name="Grass17" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5714, 832 )
+
+[node name="Grass18" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 446.286, 832 )
+
+[node name="Grass19" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 574.857, 832 )
+
+[node name="Grass20" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 574.857, 1089.14 )
+
+[node name="Grass21" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 446.286, 1089.14 )
+
+[node name="Grass22" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 189.143, 1089.14 )
+
+[node name="Grass23" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 60.5714, 1089.14 )
+
+
