@@ -13,12 +13,10 @@ node_size = Vector2( 128, 128 )
 [node name="Grass" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 64, 64 )
-transform/scale = Vector2( 1, 1 )
 
 [node name="Grass1" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 192, 64 )
-transform/scale = Vector2( 1, 1 )
 
 [node name="Grass3" parent="." instance=ExtResource( 2 )]
 
@@ -31,16 +29,14 @@ transform/pos = Vector2( 64, 192 )
 [node name="Grass2" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 320, 64 )
-transform/scale = Vector2( 1, 1 )
 
 [node name="Road" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, 0 )
+transform/pos = Vector2( 448, 64 )
 
 [node name="Water" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 576, 64 )
-transform/scale = Vector2( 1, 1 )
 
 [node name="Water1" parent="." instance=ExtResource( 4 )]
 
