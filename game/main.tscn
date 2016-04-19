@@ -14,7 +14,7 @@ transform/scale = Vector2( 0.7, 0.7 )
 
 [node name="Selection" type="Polygon2D" parent="."]
 
-polygon = Vector2Array( 10, 10, 10, -10, -10, -10, -10, 10 )
+polygon = Vector2Array(  )
 uv = Vector2Array(  )
 color = Color( 0.12854, 0.84375, 0.223529, 0.518002 )
 offset = Vector2( 0, 0 )
@@ -29,13 +29,16 @@ script/script = ExtResource( 2 )
 [node name="Helicopter" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 9.14286, 397.714 )
+linear_damp = 0.1
 
 [node name="Soldier" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 260.571, 512 )
+linear_damp = 0.1
 
 [node name="Tank" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 397.714, 397.714 )
+transform/pos = Vector2( 391.022, 275.036 )
+linear_damp = 0.1
 
 

@@ -1,12 +1,6 @@
-
 extends Area2D
 
-# member variables here, example:
-# var a=2
-# var b="textvar"
-
-#func _ready():
-#	set_process_input(true)
+export(String, "Soldier", "Helicopter", "Tank") var unit_type
 
 onready var level = get_node("../Level")
 onready var selection = get_node("../Selection")
@@ -20,6 +14,9 @@ func _input_event(viewport, ev, shape_idx):
 		print("selected " + get_name() + " " + str(x) + ", " + str(y) + " - " + level.grid[x][y].path_type)
 		print(str(get_node("../Selection")))
 		selection.set_selection(self)
+		
+func get_grid_pos():
+	return Vector2(floor(get_pos().x / level.node_size.x), floor(get_pos().y / level.node_size.y))
 
 
 

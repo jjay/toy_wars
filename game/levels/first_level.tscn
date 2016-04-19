@@ -30,8 +30,7 @@ transform/pos = Vector2( 256, 0 )
 
 [node name="Road" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, -1.90735e-06 )
-transform/scale = Vector2( 1, 1 )
+transform/pos = Vector2( 384, 0 )
 
 [node name="Water" parent="." instance=ExtResource( 4 )]
 

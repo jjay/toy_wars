@@ -4,21 +4,21 @@ extends Polygon2D
 onready var level = get_node("../Level")
 
 func set_selection(unit):
-	var x = floor(unit.get_pos().x / level.node_size.x)
-	var y = floor(unit.get_pos().y / level.node_size.y)
-	var moves = find_all_moves(x, y)
+	print ("calc pos moves for " + str(unit.get_grid_pos()) + ", " + str(unit.unit_type))
+	var moves = find_all_moves(unit)
 	print("res: " + str(moves))
 	draw_moves(moves)
 
 	
 
-func find_all_moves(x, y):
+func find_all_moves(unit):
 	var first = PathFindNode.new()
-	first.pos = Vector2(x, y)
+	first.pos = unit.get_grid_pos()
 	first.len = 0
 	var open = [first]
 	var result = []
 	var closed = []
+	closed.append(hash(first.pos))
 	
 	while open.size():
 		var current = open[0]
@@ -35,22 +35,35 @@ func find_all_moves(x, y):
 				next.pos = Vector2(current.pos.x + ix, current.pos.y + iy)
 				if closed.find(hash(next.pos)) >= 0:
 					continue
-				if next.pos.x < 0 || next.pos.y < 0 || next.pos.x >= level.grid["size"].x || next.pos.y >= level.grid["size"].y:
+				if next.pos.x < 0 || next.pos.y < 0 || next.pos.x >= level.grid_size.x || next.pos.y >= level.grid_size.y:
 					continue
+				
+
+				var tile_type = str(level.grid[next.pos.x][next.pos.y].path_type)
+				print("check " + str(tile_type) + ", " + str(unit.unit_type))
+				if str(unit.unit_type) == "Tank" || str(unit.unit_type) == "Soldier":
+					if tile_type == "Water":
+						continue
 				print("adding " + str(next.pos) + ", " + str(result.find(next.pos)))
-				closed.append(hash(next.pos))
 				open.append(next)
+				closed.append(hash(next.pos))
 	return result
 
 func draw_moves(moves):
 	# populate all posible vertices
+	var half_x = level.node_size.x * 0.5
+	var half_y = level.node_size.y * 0.5
 	var vertices = {}
 	for move in moves:
 		var move_verts = [ 
 			Vector2(move.x * level.node_size.x, move.y * level.node_size.y),
 			Vector2((move.x + 1)* level.node_size.x, move.y * level.node_size.y),
 			Vector2((move.x + 1) * level.node_size.x, (move.y + 1) * level.node_size.y),
-			Vector2(move.x * level.node_size.x, (move.y + 1) * level.node_size.y)
+			Vector2(move.x * level.node_size.x, (move.y + 1) * level.node_size.y),
+			Vector2((move.x + 0.5) * level.node_size.x, move.y * level.node_size.y),
+			Vector2((move.x + 1)* level.node_size.x, (move.y + 0.5) * level.node_size.y),
+			Vector2((move.x + 0.5) * level.node_size.x, (move.y + 1) * level.node_size.y),
+			Vector2(move.x * level.node_size.x, (move.y + 0.5) * level.node_size.y)
 		]
 		for move_vert in move_verts:
 			if vertices.has(move_vert):
@@ -58,11 +71,16 @@ func draw_moves(moves):
 			else:
 				vertices[move_vert] = 1
 		
-	# erase inner vertices
+	# erase inner corner and half-side vertices
 	var erase = []
 	for vert in vertices:
 		if vertices[vert] > 3:
 			erase.append(vert)
+		elif vertices[vert] == 2:
+			if int(vert.x) % int(level.node_size.x) != 0:
+				erase.append(vert)
+			elif int(vert.y) % int(level.node_size.y) != 0:
+				erase.append(vert)
 	for vert in erase:
 		vertices.erase(vert)
 
@@ -70,29 +88,24 @@ func draw_moves(moves):
 	var result = Vector2Array()
 	var current
 	var first
-	var prev
+	var current_weight = 0
 	for vert in vertices:
-		if vertices[vert] <= 3:
+		if vertices[vert] > 1:
 			current = vert
-			first = vert
-			prev = vert
 			break
 	var i = 0
-	while result.size() == 0 || current != first:
+	while vertices.size() > 0:
 		i += 1
 		if i >= 1000:
 			print("endless loop")
 			break
 		result.push_back(current)
+		vertices.erase(current)
 		for vert in vertices:
 			var dx = abs(current.x - vert.x)
 			var dy = abs(current.y - vert.y)
-			if dx == 0 && dy == level.node_size.y || dy == 0 && dx == level.node_size.x:
-				if vert == prev:
-					continue
-				prev = current
+			if dx == 0 && dy == half_y || dy == 0 && dx == half_x:
 				current = vert
-				vertices.erase(vert)
 				break
 				
 	set_polygon(result)
