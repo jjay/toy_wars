@@ -1,11 +1,17 @@
 
-extends Polygon2D
+extends Area2D
 
 onready var level = get_node("../Level")
+onready var polygon = get_node("Polygon")
+onready var collision = get_node("Collision")
+
+var current_selection
 
 func set_selection(unit):
+	current_selection = unit
 	var moves = find_all_moves(unit)
 	draw_moves(moves)
+	update_collision_shape(moves)
 
 	
 
@@ -103,9 +109,39 @@ func draw_moves(moves):
 				current = vert
 				break
 				
-	set_polygon(result)
-	update()
+	polygon.set_polygon(result)
+
+		
+
+func update_collision_shape(moves):
+	var size_x = level.node_size.x
+	var size_y = level.node_size.y
+	clear_shapes()
 	
+	for move in moves:
+		var verts = Vector2Array([
+			Vector2(move.x * size_x, move.y * size_y),
+			Vector2((move.x + 1)* size_x, move.y * size_y),
+			Vector2((move.x + 1) * size_x, (move.y + 1) * size_y),
+			Vector2(move.x * size_x, (move.y + 1) * size_y)
+		])
+		var shape = ConvexPolygonShape2D.new()
+		shape.set_point_cloud(verts)
+		add_shape(shape)
+		
+func clear_selection():
+	current_selection = null
+	polygon.set_polygon(Vector2Array())
+	clear_shapes()
+	
+func _input_event(viewport, ev, shape_idx):
+	if current_selection == null:
+		return
+	if ev.is_action_pressed("select"):
+		var x = level.node_size.x * (0.5 + floor(ev.pos.x / level.node_size.x))
+		var y = level.node_size.y * (0.5 + floor(ev.pos.y / level.node_size.y))
+		current_selection.set_pos(Vector2(x, y))
+		clear_selection()
 
 
 class PathFindNode:
