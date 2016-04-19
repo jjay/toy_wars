@@ -12,21 +12,26 @@ node_size = Vector2( 128, 128 )
 
 [node name="Grass" parent="." instance=ExtResource( 2 )]
 
+transform/pos = Vector2( 64, 64 )
+transform/scale = Vector2( 1, 1 )
+
 [node name="Grass1" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 0 )
+transform/pos = Vector2( 192, 64 )
+transform/scale = Vector2( 1, 1 )
 
 [node name="Grass3" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 256, 128 )
+transform/pos = Vector2( 320, 192 )
 
 [node name="Grass4" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0, 128 )
+transform/pos = Vector2( 64, 192 )
 
 [node name="Grass2" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 256, 0 )
+transform/pos = Vector2( 320, 64 )
+transform/scale = Vector2( 1, 1 )
 
 [node name="Road" parent="." instance=ExtResource( 3 )]
 
@@ -34,158 +39,159 @@ transform/pos = Vector2( 384, 0 )
 
 [node name="Water" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 512, 0 )
+transform/pos = Vector2( 576, 64 )
+transform/scale = Vector2( 1, 1 )
 
 [node name="Water1" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 512, 256 )
+transform/pos = Vector2( 576, 320 )
 
 [node name="Water2" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 512, 128 )
+transform/pos = Vector2( 576, 192 )
 
 [node name="Road1" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, 128 )
+transform/pos = Vector2( 448, 192 )
 
 [node name="Road2" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, 256 )
+transform/pos = Vector2( 448, 320 )
 
 [node name="Road3" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, 384 )
+transform/pos = Vector2( 448, 448 )
 
 [node name="Water3" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 256, 256 )
+transform/pos = Vector2( 320, 320 )
 
 [node name="Grass5" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 128 )
+transform/pos = Vector2( 192, 192 )
 
 [node name="Water4" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 128, 256 )
+transform/pos = Vector2( 192, 320 )
 
 [node name="Water5" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 0, 256 )
+transform/pos = Vector2( 64, 320 )
 
 [node name="Road4" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, 512 )
+transform/pos = Vector2( 448, 576 )
 
 [node name="Road5" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 384, 640 )
+transform/pos = Vector2( 448, 704 )
 
 [node name="Road6" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 512, 640 )
+transform/pos = Vector2( 576, 704 )
 
 [node name="Road7" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 256, 640 )
+transform/pos = Vector2( 320, 704 )
 
 [node name="Road8" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 256, 768 )
+transform/pos = Vector2( 320, 832 )
 
 [node name="Road9" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 256, 896 )
+transform/pos = Vector2( 320, 960 )
 
 [node name="Road10" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 256, 1024 )
+transform/pos = Vector2( 320, 1088 )
 
 [node name="Water6" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 384, 896 )
+transform/pos = Vector2( 448, 960 )
 
 [node name="Water7" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 512, 896 )
+transform/pos = Vector2( 576, 960 )
 
 [node name="Water8" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 128, 896 )
+transform/pos = Vector2( 192, 960 )
 
 [node name="Water9" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 0, 896 )
+transform/pos = Vector2( 64, 960 )
 
 [node name="Grass6" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 256, 384 )
+transform/pos = Vector2( 320, 448 )
 
 [node name="Grass7" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 384 )
+transform/pos = Vector2( 192, 448 )
 
 [node name="Grass8" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0, 384 )
+transform/pos = Vector2( 64, 448 )
 
 [node name="Grass9" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 512, 384 )
+transform/pos = Vector2( 576, 448 )
 
 [node name="Grass10" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 512, 512 )
+transform/pos = Vector2( 576, 576 )
 
 [node name="Grass11" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 256, 512 )
+transform/pos = Vector2( 320, 576 )
 
 [node name="Grass12" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 512 )
+transform/pos = Vector2( 192, 576 )
 
 [node name="Grass13" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0, 512 )
+transform/pos = Vector2( 64, 576 )
 
 [node name="Grass14" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0, 640 )
+transform/pos = Vector2( 64, 704 )
 
 [node name="Grass15" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 640 )
+transform/pos = Vector2( 192, 704 )
 
 [node name="Grass16" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 768 )
+transform/pos = Vector2( 192, 832 )
 
 [node name="Grass17" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0, 768 )
+transform/pos = Vector2( 64, 832 )
 
 [node name="Grass18" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 384, 768 )
+transform/pos = Vector2( 448, 832 )
 
 [node name="Grass19" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 512, 768 )
+transform/pos = Vector2( 576, 832 )
 
 [node name="Grass20" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 512, 1024 )
+transform/pos = Vector2( 576, 1088 )
 
 [node name="Grass21" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 384, 1024 )
+transform/pos = Vector2( 448, 1088 )
 
 [node name="Grass22" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 128, 1024 )
+transform/pos = Vector2( 192, 1088 )
 
 [node name="Grass23" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0, 1024 )
+transform/pos = Vector2( 64, 1088 )
 
 
