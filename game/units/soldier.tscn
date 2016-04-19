@@ -12,7 +12,7 @@ radius = 50.0
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, -0, 0, 1, 63.8774, 65.1299 )
+shapes/0/transform = Matrix32( 1, -0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -22,14 +22,12 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 60.1199, 65.1299 )
 transform/rot = 90.0
 transform/scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 63.8774, 65.1299 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
