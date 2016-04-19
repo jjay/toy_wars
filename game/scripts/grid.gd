@@ -16,12 +16,10 @@ func _ready():
 			max_x = x
 		if y > max_y:
 			max_y = y
-		print("check " + str(x) + ", " + str(y) + ", " + str(node.get_pos()))
 		grid.resize(max(grid.size(), x+1))
 		if grid[x] == null:
 			grid[x] = []
 		grid[x].resize(max(grid[x].size(), y+1))
 		grid[x][y] = node
 	grid_size = Vector2(max_x + 1, max_y + 1)
-	print(str(grid))
-	
+	print("Level scaned: " + str(grid_size.x) + "x" + str(grid_size.y))

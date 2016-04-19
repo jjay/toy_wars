@@ -4,9 +4,7 @@ extends Polygon2D
 onready var level = get_node("../Level")
 
 func set_selection(unit):
-	print ("calc pos moves for " + str(unit.get_grid_pos()) + ", " + str(unit.unit_type))
 	var moves = find_all_moves(unit)
-	print("res: " + str(moves))
 	draw_moves(moves)
 
 	
@@ -38,13 +36,10 @@ func find_all_moves(unit):
 				if next.pos.x < 0 || next.pos.y < 0 || next.pos.x >= level.grid_size.x || next.pos.y >= level.grid_size.y:
 					continue
 				
-
 				var tile_type = str(level.grid[next.pos.x][next.pos.y].path_type)
-				print("check " + str(tile_type) + ", " + str(unit.unit_type))
 				if str(unit.unit_type) == "Tank" || str(unit.unit_type) == "Soldier":
 					if tile_type == "Water":
 						continue
-				print("adding " + str(next.pos) + ", " + str(result.find(next.pos)))
 				open.append(next)
 				closed.append(hash(next.pos))
 	return result
