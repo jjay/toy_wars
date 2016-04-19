@@ -1,6 +1,7 @@
 extends Area2D
 
 export(String, "Soldier", "Helicopter", "Tank") var unit_type
+export var actions = 1
 
 onready var level = get_node("../Level")
 onready var selection = get_node("../Selection")

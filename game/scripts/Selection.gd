@@ -26,7 +26,7 @@ func find_all_moves(unit):
 			for iy in [-1, 0, 1]:
 				if ix == 0 && iy == 0 || ix != 0 && iy != 0:
 					continue
-				if current.len == 2:
+				if current.len >= unit.actions:
 					continue
 				var next = PathFindNode.new()
 				next.len = current.len + 1
