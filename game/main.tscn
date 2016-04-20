@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
-[ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/Selection.gd" type="Script" id=2]
-[ext_resource path="res://units/helicopter.tscn" type="PackedScene" id=3]
-[ext_resource path="res://units/soldier.tscn" type="PackedScene" id=4]
-[ext_resource path="res://units/tank.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/GameSettings.gd" type="Script" id=1]
+[ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Selection.gd" type="Script" id=3]
+[ext_resource path="res://units/helicopter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://units/soldier.tscn" type="PackedScene" id=5]
+[ext_resource path="res://units/tank.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -13,7 +14,11 @@ points = Vector2Array( 0, 0, 500.195, 1.53365, 497.969, 367.988 )
 
 [node name="Game" type="Node2D"]
 
-[node name="Level" parent="." instance=ExtResource( 1 )]
+script/script = ExtResource( 1 )
+move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
+hit_color = Color( 0.734375, 0, 0, 0.515691 )
+
+[node name="Level" parent="." instance=ExtResource( 2 )]
 
 [node name="Selection" type="Area2D" parent="."]
 
@@ -25,7 +30,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 2 )
+script/script = ExtResource( 3 )
 
 [node name="Polygon" type="Polygon2D" parent="Selection"]
 
@@ -40,17 +45,17 @@ texture/rotation = 0.0
 invert/enable = false
 invert/border = 100.0
 
-[node name="Helicopter" parent="." instance=ExtResource( 3 )]
+[node name="Helicopter" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 64, 320 )
 actions = 4
 
-[node name="Soldier" parent="." instance=ExtResource( 4 )]
+[node name="Soldier" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 320, 448 )
 actions = 2
 
-[node name="Tank" parent="." instance=ExtResource( 5 )]
+[node name="Tank" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 448, 320 )
 actions = 3

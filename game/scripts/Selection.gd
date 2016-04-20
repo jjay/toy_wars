@@ -7,10 +7,12 @@ onready var collision = get_node("Collision")
 
 var current_selection
 var next_action
+var current_color
 
-func set_selection(unit, action):
+func set_selection(unit, action, color):
 	current_selection = unit
 	next_action = action
+	current_color = color
 	
 	var moves = find_all_moves(unit)
 	#print("moves " + str(moves))
@@ -115,6 +117,7 @@ func draw_moves(moves):
 				break
 				
 	polygon.set_polygon(result)
+	polygon.set_color(current_color)
 
 		
 
