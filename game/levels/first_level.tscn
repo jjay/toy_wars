@@ -86,10 +86,6 @@ transform/rot = 90.0
 
 transform/pos = Vector2( 320, 832 )
 
-[node name="Road10" parent="." instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 320, 1088 )
-
 [node name="Water6" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 960 )
@@ -161,22 +157,6 @@ transform/pos = Vector2( 448, 832 )
 [node name="Grass19" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 576, 832 )
-
-[node name="Grass20" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 576, 1088 )
-
-[node name="Grass21" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 448, 1088 )
-
-[node name="Grass22" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 192, 1088 )
-
-[node name="Grass23" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 64, 1088 )
 
 [node name="Road 2" parent="." instance=ExtResource( 5 )]
 

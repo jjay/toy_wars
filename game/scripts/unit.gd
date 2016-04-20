@@ -9,7 +9,7 @@ onready var selection = get_node("../Selection")
 
 func _input_event(viewport, ev, shape_idx):
 	if ev.is_action_pressed("select"):
-		selection.set_selection(self, "move_unit", get_parent().move_color)
+		selection.select_unit(self, "move_unit", get_parent().move_color)
 		
 func get_grid_pos():
 	return level.get_grid_pos(get_pos())
