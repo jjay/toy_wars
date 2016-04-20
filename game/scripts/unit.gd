@@ -9,10 +9,13 @@ onready var selection = get_node("../Selection")
 
 func _input_event(viewport, ev, shape_idx):
 	if ev.is_action_pressed("select"):
-		selection.set_selection(self)
+		selection.set_selection(self, "move_unit")
 		
 func get_grid_pos():
-	return Vector2(floor(get_pos().x / level.node_size.x), floor(get_pos().y / level.node_size.y))
+	return level.get_grid_pos(get_pos())
+	
+func move_unit(grid_pos):
+	set_pos(level.get_local_pos(grid_pos))
 
 
 

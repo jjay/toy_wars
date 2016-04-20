@@ -23,3 +23,15 @@ func _ready():
 		grid[x][y] = node
 	grid_size = Vector2(max_x + 1, max_y + 1)
 	print("Level scaned: " + str(grid_size.x) + "x" + str(grid_size.y))
+	
+func get_grid_pos(local_pos):
+	return Vector2(\
+		floor(local_pos.x / node_size.x),\
+		floor(local_pos.y/ node_size.y)\
+	)	
+
+func get_local_pos(grid_pos):
+	return Vector2(\
+		(0.5 + grid_pos.x) * node_size.x,\
+		(0.5 + grid_pos.y) * node_size.y\
+	)

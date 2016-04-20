@@ -6,10 +6,14 @@ onready var polygon = get_node("Polygon")
 onready var collision = get_node("Collision")
 
 var current_selection
+var next_action
 
-func set_selection(unit):
+func set_selection(unit, action):
 	current_selection = unit
+	next_action = action
+	
 	var moves = find_all_moves(unit)
+	#print("moves " + str(moves))
 	draw_moves(moves)
 	update_collision_shape(moves)
 
@@ -21,13 +25,15 @@ func find_all_moves(unit):
 	first.len = 0
 	var open = [first]
 	var result = []
-	var closed = []
-	closed.append(hash(first.pos))
+	var closed = {}
 	
 	while open.size():
 		var current = open[0]
 		open.pop_front()
+		if closed.has(str(current.pos)):
+			continue
 		result.append(current.pos)
+		closed[str(current.pos)] = true
 		for ix in [-1, 0, 1]:
 			for iy in [-1, 0, 1]:
 				if ix == 0 && iy == 0 || ix != 0 && iy != 0:
@@ -37,8 +43,6 @@ func find_all_moves(unit):
 				var next = PathFindNode.new()
 				next.len = current.len + 1
 				next.pos = Vector2(current.pos.x + ix, current.pos.y + iy)
-				if closed.find(hash(next.pos)) >= 0:
-					continue
 				if next.pos.x < 0 || next.pos.y < 0 || next.pos.x >= level.grid_size.x || next.pos.y >= level.grid_size.y:
 					continue
 				
@@ -46,8 +50,9 @@ func find_all_moves(unit):
 				if str(unit.unit_type) == "Tank" || str(unit.unit_type) == "Soldier":
 					if tile_type == "Water":
 						continue
+				
 				open.append(next)
-				closed.append(hash(next.pos))
+				
 	return result
 
 func draw_moves(moves):
@@ -138,9 +143,7 @@ func _input_event(viewport, ev, shape_idx):
 	if current_selection == null:
 		return
 	if ev.is_action_pressed("select"):
-		var x = level.node_size.x * (0.5 + floor(ev.pos.x / level.node_size.x))
-		var y = level.node_size.y * (0.5 + floor(ev.pos.y / level.node_size.y))
-		current_selection.set_pos(Vector2(x, y))
+		current_selection.call(next_action, level.get_grid_pos(ev.pos))
 		clear_selection()
 
 
