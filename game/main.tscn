@@ -43,16 +43,16 @@ invert/border = 100.0
 [node name="Helicopter" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 64, 320 )
-linear_damp = 0.1
+actions = 4
 
 [node name="Soldier" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 320, 448 )
-linear_damp = 0.1
+actions = 2
 
 [node name="Tank" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 448, 320 )
-linear_damp = 0.1
+actions = 3
 
 

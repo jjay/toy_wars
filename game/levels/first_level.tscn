@@ -81,10 +81,12 @@ transform/pos = Vector2( 448, 576 )
 [node name="Road5" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 448, 704 )
+transform/rot = 90.0
 
 [node name="Road6" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 576, 704 )
+transform/rot = 90.0
 
 [node name="Road7" parent="." instance=ExtResource( 3 )]
 
