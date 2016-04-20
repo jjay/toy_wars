@@ -15,6 +15,7 @@ points = Vector2Array( 0, 0, 500.195, 1.53365, 497.969, 367.988 )
 [node name="Game" type="Node2D"]
 
 script/script = ExtResource( 1 )
+__meta__ = { "_editor_collapsed":true }
 move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
 hit_color = Color( 0.734375, 0, 0, 0.515691 )
 
@@ -48,16 +49,19 @@ invert/border = 100.0
 [node name="Helicopter" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 64, 320 )
+linear_damp = 0.1
 actions = 4
 
 [node name="Soldier" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 320, 448 )
+linear_damp = 0.1
 actions = 2
 
 [node name="Tank" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 448, 320 )
+linear_damp = 0.1
 actions = 3
 
 
