@@ -2,8 +2,6 @@
 extends Area2D
 
 onready var level = get_node("../Level")
-onready var polygon = get_node("Polygon")
-onready var collision = get_node("Collision")
 onready var game = get_node("/root/Game")
 onready var vars = get_node("/root/const")
 

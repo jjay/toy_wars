@@ -13,6 +13,7 @@ var turn = 0
 var timer
 var players = [] 
 var current_player
+var next_turn_screen
 
 
 onready var hand_container = get_node("HandContainer")
@@ -24,6 +25,7 @@ onready var level = get_node("Level")
 onready var vars = get_node("/root/const")
 
 func _ready():
+	next_turn_screen = preload("res://scenes/next_turn_notification.tscn").instance()
 	print("game rady")
 	var p1 = Player.new()
 	p1.name = "ВшDire";
@@ -48,19 +50,20 @@ func _ready():
 	timer.set_one_shot(true)
 	#timer.set_wait_time(0)
 	timer.connect("timeout", self, "process_turn")
-	
-
-	timer.start()
-	
 	set_process(true)
 	process_turn()
 	
 func process_turn():
 	turn += 1
+	current_player = players[turn % 2]
+	next_turn_screen.show(self)
+	selection.clear_selection()
+	yield(next_turn_screen, "release")
+	
 	print("Start turn " + str(turn))
 	timer.set_wait_time(turn_time)
 	timer.start()
-	current_player = players[turn % 2]
+	
 	hand_container.remove_child(hand_container.get_child(0))
 	hand_container.add_child(current_player.hand)
 	player_label.set_text(current_player.name)
@@ -68,7 +71,7 @@ func process_turn():
 		unit.can_move = true
 	if current_player.hand.get_child_count() < 4:
 		current_player.generate_card()
-	selection.clear_selection()
+
 
 func get_player_by_side(side):
 	for p in players:
