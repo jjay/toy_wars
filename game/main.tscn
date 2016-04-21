@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/GameSettings.gd" type="Script" id=1]
 [ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Selection.gd" type="Script" id=3]
-[ext_resource path="res://units/helicopter.tscn" type="PackedScene" id=4]
-[ext_resource path="res://units/soldier.tscn" type="PackedScene" id=5]
-[ext_resource path="res://units/tank.tscn" type="PackedScene" id=6]
+[ext_resource path="res://buildings/base.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -18,6 +16,9 @@ script/script = ExtResource( 1 )
 move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
 hit_color = Color( 0.734375, 0, 0, 0.515691 )
 spawn_color = Color( 0.992188, 1, 0, 0.501925 )
+radiant_color = Color( 1, 0, 0.046875, 0.655372 )
+dire_color = Color( 0.252319, 0.621094, 0, 0.647093 )
+neutral_color = Color( 0.554688, 0.554688, 0.554688, 0.373893 )
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
 
@@ -46,23 +47,17 @@ texture/rotation = 0.0
 invert/enable = false
 invert/border = 100.0
 
-[node name="Helicopter" parent="." instance=ExtResource( 4 )]
+[node name="Units" type="Node2D" parent="."]
 
-transform/pos = Vector2( 64, 320 )
-linear_damp = 0.1
-actions = 4
+[node name="DireBase" parent="Units" instance=ExtResource( 4 )]
 
-[node name="Soldier" parent="." instance=ExtResource( 5 )]
+transform/pos = Vector2( 192, 192 )
+owner = 2
 
-transform/pos = Vector2( 320, 448 )
-linear_damp = 0.1
-actions = 2
+[node name="RadiantBase" parent="Units" instance=ExtResource( 4 )]
 
-[node name="Tank" parent="." instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 448, 320 )
-linear_damp = 0.1
-actions = 3
+transform/pos = Vector2( 448, 832 )
+owner = 1
 
 [node name="HandContainer" type="Node2D" parent="."]
 

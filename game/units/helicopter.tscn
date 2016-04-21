@@ -1,37 +1,20 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://scripts/unit.gd" type="Script" id=1]
+[ext_resource path="res://units/default.tscn" type="PackedScene" id=1]
 [ext_resource path="res://textures/helicopter.atex" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[node name="Soldier" instance=ExtResource( 1 )]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
-[node name="Helicopter" type="Area2D"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 5, -0, 0, 5, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
 linear_damp = 0.1
-angular_damp = 1.0
-script/script = ExtResource( 1 )
 unit_type = "Helicopter"
-actions = 2
+actions = 3
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Polygon" parent="."]
 
-transform/scale = Vector2( 0.3, 0.3 )
+polygon = Vector2Array( 20.1923, -36.5945, 42.8667, -34.7659, 39.9409, -26.7201, 25.678, -19.4058, 31.8952, -11.7258, 38.1124, 3.63433, 42.6309, 6.99658, 42.1352, 18.6287, 38.4781, 29.6002, 31.802, 35.4222, 18.2661, 42.1902, 1.34604, 43.5438, -16.3794, 37.646, -23.6937, 24.8459, -32.8366, 22.2859, -37.2252, 7.65721, -41.9795, -0.754265, -40.1509, -21.6001, -26.9851, -22.3315, -17.6862, -15.306, -10.5279, -20.5029, -23.328, -25.2573, -31.3737, -31.4744, -20.768, -39.1545, 6.29504, -30.743 )
+
+[node name="Sprite" parent="."]
+
 texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-transform/scale = Vector2( 5, 5 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
 
 

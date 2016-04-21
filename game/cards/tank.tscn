@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/Card.gd" type="Script" id=1]
-[ext_resource path="res://units/soldier.tscn" type="PackedScene" id=2]
+[ext_resource path="res://units/tank.tscn" type="PackedScene" id=2]
 [ext_resource path="res://textures/tank.atex" type="Texture" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]

@@ -4,13 +4,33 @@ extends Area2D
 onready var level = get_node("../Level")
 onready var polygon = get_node("Polygon")
 onready var collision = get_node("Collision")
+onready var game = get_node("/root/Game")
+onready var vars = get_node("/root/const")
 
 var current_selection
 var next_action
 var current_color
 
 func select_spawn_zones(card, action, color):
-	print("Try to select spawn zones for " + card.get_name())
+	current_selection = card
+	next_action = action
+	current_color = color
+	var player = game.current_player
+	var group
+	if player.side == vars.RADIANT:
+		group = "RadiantBuilding"
+	elif player.side == vars.DIRE:
+		group = "DireBuilding"
+
+		
+	#print("Try to select spawn zones for " + card.get_name())
+	#print("Found buildings " + str(get_tree().get_nodes_in_group(group).size()))
+	for build in get_tree().get_nodes_in_group(group):
+		var moves = find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type)
+		draw_moves(moves)
+		update_collision_shape(moves)
+		print ("Found moves: " + str(moves))
+		
 
 func select_unit(unit, action, color):
 	current_selection = unit
@@ -22,9 +42,43 @@ func select_unit(unit, action, color):
 	draw_moves(moves)
 	update_collision_shape(moves)
 
+func find_possible_moves(pos, steps, type):
+	print("Finding posible moves for " + str(pos) + ", " + str(steps) + ", " + str(type))
+	var first = PathFindNode.new()
+	first.pos = level.get_grid_pos(pos)
+	first.len = 0
+	var open = [first]
+	var result = []
+	var closed = {}
 	
+	while open.size():
+		var current = open[0]
+		open.pop_front()
+		if closed.has(str(current.pos)):
+			continue
+		result.append(current.pos)
+		closed[str(current.pos)] = true
+		for ix in [-1, 0, 1]:
+			for iy in [-1, 0, 1]:
+				if ix == 0 && iy == 0 || ix != 0 && iy != 0:
+					continue
+				if current.len >= steps:
+					continue
+				var next = PathFindNode.new()
+				next.len = current.len + 1
+				next.pos = Vector2(current.pos.x + ix, current.pos.y + iy)
+				if next.pos.x < 0 || next.pos.y < 0 || next.pos.x >= level.grid_size.x || next.pos.y >= level.grid_size.y:
+					continue
+				
+				var tile_type = str(level.grid[next.pos.x][next.pos.y].path_type)
+				if str(type) == "Tank" || str(type) == "Soldier":
+					if tile_type == "Water":
+						continue
+				open.append(next)
+				
+	return result
 
-func find_all_moves(unit):
+func find_all_moves(unit, longest_move=10):
 	var first = PathFindNode.new()
 	first.pos = unit.get_grid_pos()
 	first.len = 0
@@ -43,7 +97,7 @@ func find_all_moves(unit):
 			for iy in [-1, 0, 1]:
 				if ix == 0 && iy == 0 || ix != 0 && iy != 0:
 					continue
-				if current.len >= unit.actions:
+				if current.len >= min(unit.actions, longest_move):
 					continue
 				var next = PathFindNode.new()
 				next.len = current.len + 1

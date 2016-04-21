@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/unit.gd" type="Script" id=1]
+[ext_resource path="res://textures/soldier.atex" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="Soldier" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 5, 0, 0, 5, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+unit_type = "Soldier"
+actions = 1
+
+[node name="Polygon" type="Polygon2D" parent="."]
+
+polygon = Vector2Array( -24.3724, -43.0866, 19.6196, -41.733, 27.7413, -31.581, 42.6309, -24.1362, 43.9845, -6.53943, 42.6309, 6.99658, 27.7413, 11.7342, 29.7717, 24.5934, 31.802, 35.4222, 18.2661, 42.1902, 1.34604, 43.5438, -18.958, 42.867, -31.1404, 37.4526, -33.1708, 25.2702, -37.9084, 12.411, -44.6764, 4.28938, -45.3532, -21.429, -33.8476, -35.6418 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/scale = Vector2( 5, 5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+

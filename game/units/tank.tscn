@@ -1,37 +1,20 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://scripts/unit.gd" type="Script" id=1]
+[ext_resource path="res://units/default.tscn" type="PackedScene" id=1]
 [ext_resource path="res://textures/tank.atex" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[node name="Soldier" instance=ExtResource( 1 )]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
-[node name="Tank" type="Area2D"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 5, -0, 0, 5, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
 linear_damp = 0.1
-angular_damp = 1.0
-script/script = ExtResource( 1 )
 unit_type = "Tank"
 actions = 2
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Polygon" parent="."]
 
-transform/scale = Vector2( 0.3, 0.3 )
+polygon = Vector2Array( -32.1052, -39.5202, 20.1923, -39.1545, 25.3123, -28.5487, 38.1124, -27.8173, 38.8438, -8.0686, 37.3809, 5.82863, 37.7466, 17.5315, 37.7466, 27.4059, 32.9923, 37.646, 18.2661, 42.1902, 1.34604, 43.5438, -18.958, 42.867, -36.4938, 39.8402, -40.8824, 32.1602, -41.6138, 18.263, -43.0767, 5.09719, -43.4424, -21.6001, -40.8824, -33.303 )
+
+[node name="Sprite" parent="."]
+
 texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-transform/scale = Vector2( 5, 5 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
 
 
