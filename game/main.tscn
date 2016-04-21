@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/GameSettings.gd" type="Script" id=1]
 [ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://units/helicopter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://units/soldier.tscn" type="PackedScene" id=5]
 [ext_resource path="res://units/tank.tscn" type="PackedScene" id=6]
-[ext_resource path="res://buildings/base.tscn" type="PackedScene" id=7]
-[ext_resource path="res://buildings/building.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -19,6 +17,7 @@ points = Vector2Array( 0, 0, 500.195, 1.53365, 497.969, 367.988 )
 script/script = ExtResource( 1 )
 move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
 hit_color = Color( 0.734375, 0, 0, 0.515691 )
+spawn_color = Color( 0.992188, 1, 0, 0.501925 )
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
 
@@ -33,7 +32,6 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Polygon" type="Polygon2D" parent="Selection"]
 
@@ -66,12 +64,38 @@ transform/pos = Vector2( 448, 320 )
 linear_damp = 0.1
 actions = 3
 
-[node name="Base" parent="." instance=ExtResource( 7 )]
+[node name="HandContainer" type="Node2D" parent="."]
 
-transform/pos = Vector2( 192, 704 )
+transform/pos = Vector2( 80, 1088 )
 
-[node name="Building" parent="." instance=ExtResource( 8 )]
+[node name="TimerLabel" type="Label" parent="."]
 
-transform/pos = Vector2( 448, 576 )
+margin/left = 560.0
+margin/right = 576.0
+margin/bottom = 13.0
+rect/scale = Vector2( 5, 5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 0.511719, 0.123932, 0.123932, 1 )
+text = "21"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ActivePlayerLabel" type="Label" parent="."]
+
+margin/right = 46.0
+margin/bottom = 13.0
+rect/scale = Vector2( 5, 5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 0.509804, 0.121569, 0.121569, 1 )
+text = "Player 1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scripts/СConnection.gd" type="Script" id=1]
+
+[node name="Connection" type="Node"]
+
+script/script = ExtResource( 1 )
+host = "127.0.0.1"
+port = 1234
+
+

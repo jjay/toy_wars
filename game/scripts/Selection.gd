@@ -9,7 +9,10 @@ var current_selection
 var next_action
 var current_color
 
-func set_selection(unit, action, color):
+func select_spawn_zones(card, action, color):
+	print("Try to select spawn zones for " + card.get_name())
+
+func select_unit(unit, action, color):
 	current_selection = unit
 	next_action = action
 	current_color = color
