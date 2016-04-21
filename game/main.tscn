@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/GameSettings.gd" type="Script" id=1]
 [ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://units/helicopter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://units/soldier.tscn" type="PackedScene" id=5]
 [ext_resource path="res://units/tank.tscn" type="PackedScene" id=6]
+[ext_resource path="res://buildings/base.tscn" type="PackedScene" id=7]
+[ext_resource path="res://buildings/building.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -15,7 +17,6 @@ points = Vector2Array( 0, 0, 500.195, 1.53365, 497.969, 367.988 )
 [node name="Game" type="Node2D"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "_editor_collapsed":true }
 move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
 hit_color = Color( 0.734375, 0, 0, 0.515691 )
 
@@ -32,6 +33,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Polygon" type="Polygon2D" parent="Selection"]
 
@@ -63,5 +65,13 @@ actions = 2
 transform/pos = Vector2( 448, 320 )
 linear_damp = 0.1
 actions = 3
+
+[node name="Base" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 192, 704 )
+
+[node name="Building" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 448, 576 )
 
 

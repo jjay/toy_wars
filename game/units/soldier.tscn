@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/unit.gd" type="Script" id=1]
 [ext_resource path="res://textures/soldier.atex" type="Texture" id=2]
+[ext_resource path="res://units/idleActive.anm" type="Animation" id=3]
+[ext_resource path="res://units/inactive.anm" type="Animation" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -10,9 +12,10 @@ extents = Vector2( 10, 10 )
 
 [node name="Soldier" type="Area2D"]
 
+transform/pos = Vector2( 0, 2.55438 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 5, -0, 0, 5, 0, 0 )
+shapes/0/transform = Matrix32( 5, 0, 0, 5, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -24,11 +27,25 @@ actions = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 
+transform/pos = Vector2( 0, -3.51668 )
 transform/scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/idleActive = ExtResource( 3 )
+anims/inactive = ExtResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+visibility/blend_mode = 1
 transform/scale = Vector2( 5, 5 )
 shape = SubResource( 1 )
 trigger = false
