@@ -7,12 +7,13 @@ export(Color) var spawn_color
 export(Color) var radiant_color
 export(Color) var dire_color
 export(Color) var neutral_color
+export(int) var turn_time = 5
 
 var turn = 0
 var timer
 var players = [] 
 var current_player
-var turn_time = 5
+
 
 onready var hand_container = get_node("HandContainer")
 onready var timer_label = get_node("TimerLabel")

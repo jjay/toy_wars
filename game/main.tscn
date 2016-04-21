@@ -19,6 +19,7 @@ spawn_color = Color( 0.992188, 1, 0, 0.501925 )
 radiant_color = Color( 1, 0, 0.046875, 0.655372 )
 dire_color = Color( 0.252319, 0.621094, 0, 0.647093 )
 neutral_color = Color( 0.554688, 0.554688, 0.554688, 0.373893 )
+turn_time = 10
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
 
