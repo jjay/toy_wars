@@ -1,0 +1,16 @@
+[gd_scene format=1]
+
+[node name="Polygon" type="Polygon2D"]
+
+polygon = Vector2Array( 16, -32, 32, -16, 24, 0, 32, 16, 16, 32, 0, 24, -16, 32, -32, 16, -24, 0, -32, -16, -16, -32, 0, -24 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+

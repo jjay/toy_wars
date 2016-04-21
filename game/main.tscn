@@ -35,19 +35,6 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
 
-[node name="Polygon" type="Polygon2D" parent="Selection"]
-
-polygon = Vector2Array(  )
-uv = Vector2Array(  )
-color = Color( 0.12854, 0.84375, 0.223529, 0.518002 )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
 [node name="Units" type="Node2D" parent="."]
 
 [node name="DireBase" parent="Units" instance=ExtResource( 4 )]

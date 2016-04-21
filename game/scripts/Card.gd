@@ -23,4 +23,5 @@ func play(grid_pos):
 	unit_instance.set_pos(game.level.get_local_pos(grid_pos))
 	get_parent().remove_child(self)
 	game.current_player.update_card_positions()
+	game.level.reserve_grid_node(grid_pos)
 	print("Plaing card at " + str(grid_pos))

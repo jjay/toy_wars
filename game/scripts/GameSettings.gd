@@ -68,6 +68,7 @@ func process_turn():
 		unit.can_move = true
 	if current_player.hand.get_child_count() < 4:
 		current_player.generate_card()
+	selection.clear_selection()
 
 func get_player_by_side(side):
 	for p in players:

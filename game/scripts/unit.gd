@@ -25,6 +25,8 @@ func get_grid_pos():
 	return game.level.get_grid_pos(get_pos())
 	
 func move_unit(grid_pos):
+	game.level.free_node(get_pos())
+	game.level.reserve_grid_node(grid_pos)
 	can_move = false
 	set_pos(game.level.get_local_pos(grid_pos))
 
