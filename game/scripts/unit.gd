@@ -11,8 +11,6 @@ var owner
 func _ready():
 	add_to_group("Unit")
 	polygon.set_color(owner.color)
-	
-
 
 
 func _input_event(viewport, ev, shape_idx):

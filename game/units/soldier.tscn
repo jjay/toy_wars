@@ -4,6 +4,6 @@
 
 [node name="Soldier" instance=ExtResource( 1 )]
 
-linear_damp = 0.1
+transform/pos = Vector2( 0, -3.41385 )
 
 
