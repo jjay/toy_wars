@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scripts/GameSettings.gd" type="Script" id=1]
 [ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Selection.gd" type="Script" id=3]
 [ext_resource path="res://buildings/base.tscn" type="PackedScene" id=4]
+[ext_resource path="res://buildings/building.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -15,7 +16,7 @@ points = Vector2Array( 0, 0, 500.195, 1.53365, 497.969, 367.988 )
 script/script = ExtResource( 1 )
 move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
 hit_color = Color( 0.734375, 0, 0, 0.515691 )
-spawn_color = Color( 0.992188, 1, 0, 0.501925 )
+spawn_color = Color( 0.949219, 0.57843, 0, 0.917212 )
 radiant_color = Color( 1, 0, 0.046875, 0.655372 )
 dire_color = Color( 0.252319, 0.621094, 0, 0.647093 )
 neutral_color = Color( 0.554688, 0.554688, 0.554688, 0.373893 )
@@ -46,6 +47,10 @@ owner = 2
 
 transform/pos = Vector2( 448, 832 )
 owner = 1
+
+[node name="Building" parent="Units" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 192, 592 )
 
 [node name="HandContainer" type="Node2D" parent="."]
 

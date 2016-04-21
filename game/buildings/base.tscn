@@ -23,7 +23,7 @@ owner = null
 
 [node name="Polygon" type="Polygon2D" parent="."]
 
-polygon = Vector2Array( -32, -48, 32, -48, 32, -32, 48, -32, 48, 32, 32, 32, 32, 48, -32, 48, -32, 32, -48, 32, -48, -32, -32, -32 )
+polygon = Vector2Array( -32, -48, 32, -48, 32, -32, 80, -32, 80, 32, 80, 80, 32, 80, -48, 80, -80, 80, -80, 32, -80, -32, -32, -32 )
 uv = Vector2Array(  )
 color = Color( 1, 1, 1, 1 )
 offset = Vector2( 0, 0 )

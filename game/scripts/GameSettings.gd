@@ -28,7 +28,7 @@ func _ready():
 	next_turn_screen = preload("res://scenes/next_turn_notification.tscn").instance()
 	print("game rady")
 	var p1 = Player.new()
-	p1.name = "ВшDire";
+	p1.name = "Dire";
 	p1.side = vars.DIRE
 	p1.color = dire_color
 	p1.generate_cards()
@@ -66,11 +66,19 @@ func process_turn():
 	
 	hand_container.remove_child(hand_container.get_child(0))
 	hand_container.add_child(current_player.hand)
-	player_label.set_text(current_player.name)
+
 	for unit in get_tree().get_nodes_in_group("Unit"):
 		unit.can_move = true
 	if current_player.hand.get_child_count() < 4:
 		current_player.generate_card()
+	for building in get_tree().get_nodes_in_group("NeutralBuilding"):
+		building.try_capture(current_player)
+	for building in get_tree().get_nodes_in_group(current_player.name + "Building"):
+		current_player.money += 1
+		
+	player_label.set_text(current_player.name + " " + str(current_player.money))
+		
+		
 
 
 func get_player_by_side(side):
@@ -88,13 +96,11 @@ func _process(delta):
 
 class Player:
 	var name = "Player 1"
-	var money = 0
+	var money = 5
 	var hand = null
 	var side = 0
 	var buildings = []
 	var color
-
-	
 
 	func _init():
 		hand = Node2D.new();
