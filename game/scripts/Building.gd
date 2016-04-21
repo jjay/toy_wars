@@ -37,6 +37,3 @@ func try_capture(player):
 		remove_from_group("DireBuilding")
 		add_to_group(player.name + "Building")
 		polygon.set_color(player.color)
-
-
-

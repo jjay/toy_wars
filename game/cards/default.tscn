@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scripts/Card.gd" type="Script" id=1]
+[ext_resource path="res://units/soldier.tscn" type="PackedScene" id=2]
+[ext_resource path="res://textures/soldier.atex" type="Texture" id=3]
+[ext_resource path="res://fonts/comic_sans_bold_36.fnt" type="Font" id=4]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 144, -144, 144, 144, -144, 144, -144, -144 )
+
+[node name="Card" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+unit = ExtResource( 2 )
+cost = 1
+attack = 1
+defence = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+build_mode = 0
+polygon = Vector2Array( 144, -144, 144, 144, -144, 144, -144, -144 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Attack" type="Label" parent="."]
+
+visibility/visible = false
+margin/left = -128.0
+margin/top = -128.0
+margin/right = -43.0
+margin/bottom = -42.0
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "21"
+valign = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Defence" type="Label" parent="."]
+
+visibility/visible = false
+margin/left = -128.0
+margin/top = -128.0
+margin/right = -43.0
+margin/bottom = -43.0
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "21"
+align = 2
+valign = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Cost" type="Label" parent="."]
+
+margin/left = -128.0
+margin/top = -128.0
+margin/right = -42.0
+margin/bottom = -43.0
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "21"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

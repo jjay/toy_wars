@@ -2,9 +2,9 @@
 
 [ext_resource path="res://scripts/GameSettings.gd" type="Script" id=1]
 [ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/Selection.gd" type="Script" id=3]
-[ext_resource path="res://buildings/base.tscn" type="PackedScene" id=4]
-[ext_resource path="res://buildings/building.tscn" type="PackedScene" id=5]
+[ext_resource path="res://buildings/base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://buildings/building.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Selection.gd" type="Script" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -15,7 +15,8 @@ points = Vector2Array( 0, 0, 500.195, 1.53365, 497.969, 367.988 )
 
 script/script = ExtResource( 1 )
 move_color = Color( 0.0368195, 0.496094, 0.25928, 0.558433 )
-hit_color = Color( 0.734375, 0, 0, 0.515691 )
+hit_color = Color( 1, 0, 0, 0.907008 )
+hit_radius_color = Color( 1, 0.320312, 0.320312, 0.432422 )
 spawn_color = Color( 0.949219, 0.57843, 0, 0.917212 )
 radiant_color = Color( 1, 0, 0.046875, 0.655372 )
 dire_color = Color( 0.252319, 0.621094, 0, 0.647093 )
@@ -23,6 +24,25 @@ neutral_color = Color( 0.554688, 0.554688, 0.554688, 0.373893 )
 turn_time = 10
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="DireBase" parent="Units" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 192, 192 )
+linear_damp = 0.1
+owner = 2
+
+[node name="RadiantBase" parent="Units" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 448, 832 )
+linear_damp = 0.1
+owner = 1
+
+[node name="Building" parent="Units" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 192, 592 )
+linear_damp = 0.1
 
 [node name="Selection" type="Area2D" parent="."]
 
@@ -34,23 +54,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 3 )
-
-[node name="Units" type="Node2D" parent="."]
-
-[node name="DireBase" parent="Units" instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 192, 192 )
-owner = 2
-
-[node name="RadiantBase" parent="Units" instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 448, 832 )
-owner = 1
-
-[node name="Building" parent="Units" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 192, 592 )
+script/script = ExtResource( 5 )
 
 [node name="HandContainer" type="Node2D" parent="."]
 

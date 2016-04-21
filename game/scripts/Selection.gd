@@ -9,6 +9,14 @@ var current_selection
 var next_action
 var current_color
 var selection_polygons = []
+var draw_radius = false
+
+func _draw():
+	if current_selection != null && draw_radius:
+		draw_circle(current_selection.get_pos(),\
+			current_selection.card.radius * game.level.node_size.x,\
+			game.hit_radius_color\
+		)
 
 func select_spawn_zones(card, action, color):
 	clear_selection()
@@ -39,11 +47,34 @@ func select_unit(unit, action, color):
 	next_action = action
 	current_color = color
 	
-	var moves = level.find_possible_moves(unit.get_pos(), unit.actions, unit.unit_type)
+	var moves = level.find_possible_moves(unit.get_pos(), unit.card.moves, unit.unit_type)
 	#print("moves " + str(moves))
 	draw_moves(moves)
 	update_collision_shape(moves)
 
+func select_target(unit, action, color):
+	clear_selection()
+
+	current_selection = unit
+	next_action = action
+	current_color = color
+	
+	draw_radius = true
+	update()
+	
+	var targets = []
+	for target in get_tree().get_nodes_in_group("Unit"):
+		if target.owner == game.current_player:
+			continue
+		if unit.get_grid_pos().distance_to(target.get_grid_pos()) > unit.card.radius:
+			continue
+		targets.append(target.get_grid_pos())
+		
+		
+	draw_moves(targets)
+	update_collision_shape(targets)
+		
+		
 
 
 
@@ -77,6 +108,9 @@ func update_collision_shape(moves):
 		add_shape(shape)
 		
 func clear_selection():
+	draw_radius = false
+	update()
+	
 	if current_selection != null:
 		var player = current_selection.get_node("AnimationPlayer")
 		if player != null:

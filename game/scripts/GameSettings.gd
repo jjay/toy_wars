@@ -3,6 +3,7 @@ extends Node2D
 
 export(Color) var move_color
 export(Color) var hit_color
+export(Color) var hit_radius_color
 export(Color) var spawn_color
 export(Color) var radiant_color
 export(Color) var dire_color
@@ -69,17 +70,19 @@ func process_turn():
 
 	for unit in get_tree().get_nodes_in_group("Unit"):
 		unit.can_move = true
+		unit.can_attack = true
 	if current_player.hand.get_child_count() < 4:
 		current_player.generate_card()
 	for building in get_tree().get_nodes_in_group("NeutralBuilding"):
 		building.try_capture(current_player)
 	for building in get_tree().get_nodes_in_group(current_player.name + "Building"):
 		current_player.money += 1
+	
+	update_texts()
 		
+		
+func update_texts():
 	player_label.set_text(current_player.name + " " + str(current_player.money))
-		
-		
-
 
 func get_player_by_side(side):
 	for p in players:
