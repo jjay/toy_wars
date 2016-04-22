@@ -33,11 +33,13 @@ func select_spawn_zones(card, action, color):
 		
 	#print("Try to select spawn zones for " + card.get_name())
 	#print("Found buildings " + str(get_tree().get_nodes_in_group(group).size()))
+	var moves = []
 	for build in get_tree().get_nodes_in_group(group):
-		var moves = level.find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type)
-		draw_moves(moves)
-		update_collision_shape(moves)
-		print ("Found moves: " + str(moves))
+		for move in level.find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type):
+			moves.append(move)
+	draw_moves(moves)
+	update_collision_shape(moves)
+	print ("Found moves: " + str(moves))
 		
 
 func select_unit(unit, action, color):
@@ -89,7 +91,6 @@ func draw_moves(moves):
 		selection_polygons.append(tile_instance)
 		
 
-		
 
 func update_collision_shape(moves):
 	var size_x = level.node_size.x

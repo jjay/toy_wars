@@ -9,12 +9,14 @@ export(Color) var radiant_color
 export(Color) var dire_color
 export(Color) var neutral_color
 export(int) var turn_time = 5
+export(int) var max_turns = 10
 
 var turn = 0
 var timer
 var players = [] 
 var current_player
 var next_turn_screen
+var winner = null
 
 
 onready var hand_container = get_node("HandContainer")
@@ -56,14 +58,11 @@ func _ready():
 	
 func process_turn():
 	turn += 1
+	print("Start turn " + str(turn))
 	current_player = players[turn % 2]
 	next_turn_screen.show(self)
 	selection.clear_selection()
-	yield(next_turn_screen, "release")
-	
-	print("Start turn " + str(turn))
-	timer.set_wait_time(turn_time)
-	timer.start()
+
 	
 	hand_container.remove_child(hand_container.get_child(0))
 	hand_container.add_child(current_player.hand)
@@ -79,7 +78,24 @@ func process_turn():
 		current_player.money += 1
 	
 	update_texts()
+	
+	yield(next_turn_screen, "release")
+	timer.set_wait_time(turn_time)
+	timer.start()
 		
+func get_winner():
+	if winner != null:
+		return winner
+	if turn < max_turns:
+		return null
+	var radiant = get_tree().get_nodes_in_group("RadiantBuilding").size()
+	var dire = get_tree().get_nodes_in_group("DireBuilding").size()
+	print("Get winner " + str(radiant) + " " + str(dire) + " " + str(turn) + " " + str(max_turns))
+	if radiant > dire:
+		return "Radiant"
+	if dire > radiant:
+		return "Dire"
+	return null
 		
 func update_texts():
 	player_label.set_text(current_player.name + " " + str(current_player.money))

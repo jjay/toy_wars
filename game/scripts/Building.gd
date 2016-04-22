@@ -37,3 +37,6 @@ func try_capture(player):
 		remove_from_group("DireBuilding")
 		add_to_group(player.name + "Building")
 		polygon.set_color(player.color)
+		print("Owner " + str(owner))
+		if owner != 0:
+			game.winner = game.current_player.name
