@@ -23,24 +23,14 @@ func select_spawn_zones(card, action, color):
 	current_selection = card
 	next_action = action
 	current_color = color
-	var player = game.current_player
-	var group
-	if player.side == vars.RADIANT:
-		group = "RadiantBuilding"
-	elif player.side == vars.DIRE:
-		group = "DireBuilding"
 
-		
-	#print("Try to select spawn zones for " + card.get_name())
-	#print("Found buildings " + str(get_tree().get_nodes_in_group(group).size()))
+	var group = game.current_player.name + "Building"
 	var moves = []
 	for build in get_tree().get_nodes_in_group(group):
 		for move in level.find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type):
 			moves.append(move)
 	draw_moves(moves)
 	update_collision_shape(moves)
-	print ("Found moves: " + str(moves))
-		
 
 func select_unit(unit, action, color):
 	clear_selection()
@@ -127,7 +117,10 @@ func _input_event(viewport, ev, shape_idx):
 	if current_selection == null:
 		return
 	if ev.is_action_pressed("select"):
-		current_selection.call(next_action, level.get_grid_pos(ev.pos))
+		var target = current_selection
+		var action = next_action
+		var grid_pos = level.get_grid_pos(ev.pos)
 		clear_selection()
+		target.call(action, grid_pos)
 
 

@@ -40,4 +40,6 @@ func play(grid_pos):
 	get_parent().remove_child(self)
 	game.current_player.update_card_positions()
 	game.level.reserve_grid_node(grid_pos)
+	unit_instance.select_move()
 	print("Plaing card at " + str(grid_pos))
+	

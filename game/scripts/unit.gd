@@ -50,6 +50,8 @@ func move_unit(grid_pos):
 	game.level.reserve_grid_node(grid_pos)
 	can_move = false
 	set_pos(game.level.get_local_pos(grid_pos))
+	if can_attack:
+		select_attack()
 
 func attack_target(grid_pos):
 	can_attack = false

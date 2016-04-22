@@ -14,6 +14,8 @@ export(int) var max_turns = 10
 var turn = 0
 var timer
 var players = [] 
+var radiant_player
+var dire_player
 var current_player
 var next_turn_screen
 var winner = null
@@ -27,27 +29,29 @@ onready var units = get_node("Units")
 onready var level = get_node("Level")
 onready var vars = get_node("/root/const")
 
-func _ready():
-	next_turn_screen = preload("res://scenes/next_turn_notification.tscn").instance()
-	print("game rady")
-	var p1 = Player.new()
-	p1.name = "Dire";
-	p1.side = vars.DIRE
-	p1.color = dire_color
-	p1.generate_cards()
-	var p2 = Player.new()
-	p2.color = radiant_color
-	p2.name = "Radiant";
-	p2.generate_cards()
+func _init():
+	print("game init")
+	dire_player = Player.new()
+	dire_player.name = "Dire";
 
-	p1.update_card_positions()
-	p2.update_card_positions()
-	p2.side = vars.RADIANT
-	players.append(p1);
-	players.append(p2)
+	dire_player.generate_cards()
+	dire_player.update_card_positions()
+	radiant_player = Player.new()
+
+	radiant_player.name = "Radiant";
+	radiant_player.generate_cards()
+	radiant_player.update_card_positions()
+
+	players.append(dire_player);
+	players.append(radiant_player)
+
+
 	
-	hand_container.add_child(p1.hand)
-	
+func _ready():
+	dire_player.color = dire_color	
+	radiant_player.color = radiant_color
+	hand_container.add_child(dire_player.hand)
+	next_turn_screen = preload("res://scenes/next_turn_notification.tscn").instance()
 	timer = Timer.new()
 	add_child(timer)
 	timer.set_one_shot(true)
@@ -60,7 +64,6 @@ func process_turn():
 	turn += 1
 	print("Start turn " + str(turn))
 	current_player = players[turn % 2]
-	next_turn_screen.show(self)
 	selection.clear_selection()
 
 	
@@ -72,10 +75,12 @@ func process_turn():
 		unit.can_attack = true
 	if current_player.hand.get_child_count() < 4:
 		current_player.generate_card()
-	for building in get_tree().get_nodes_in_group("NeutralBuilding"):
+	for building in get_tree().get_nodes_in_group("Building"):
 		building.try_capture(current_player)
 	for building in get_tree().get_nodes_in_group(current_player.name + "Building"):
 		current_player.money += 1
+		
+	next_turn_screen.show(self)
 	
 	update_texts()
 	

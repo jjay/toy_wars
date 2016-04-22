@@ -5,9 +5,6 @@
 
 [node name="Building" instance=ExtResource( 1 )]
 
-linear_damp = 0.1
-owner = 0
-
 [node name="Sprite" parent="."]
 
 transform/pos = Vector2( 0, 0 )

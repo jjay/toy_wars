@@ -2,26 +2,24 @@
 extends Area2D
 
 
-export (int, "NEUTRAL", "RADIANT", "DIRE") var owner
+export (String, "Neutral", "Radiant", "Dire") var owner
+
+var current_owner = null
 
 onready var game = get_node("/root/Game")
 onready var polygon = get_node("Polygon")
 
 func _ready():
-	var vars = get_node("/root/const")
-	if owner == vars.RADIANT:
-		polygon.set_color(game.radiant_color)
-		add_to_group("RadiantBuilding")
-	elif owner == vars.DIRE:
-		polygon.set_color(game.dire_color)
-		add_to_group("DireBuilding")
-	else:
-		polygon.set_color(game.neutral_color)
-		add_to_group("NeutralBuilding")
-		
+	polygon.set_color(game.get(owner.to_lower() + "_color"))
+	add_to_group(owner + "Building")
+	add_to_group("Building")
+	current_owner = game.get(owner.to_lower() + "_player")
 
 
 func try_capture(player):
+	if player == current_owner:
+		return
+		
 	var grid_pos = game.level.get_grid_pos(get_pos())
 	var enemy = 0
 	var ally = 0
@@ -38,5 +36,5 @@ func try_capture(player):
 		add_to_group(player.name + "Building")
 		polygon.set_color(player.color)
 		print("Owner " + str(owner))
-		if owner != 0:
-			game.winner = game.current_player.name
+		if owner != "Neutral":
+			game.winner = player.name
