@@ -30,11 +30,11 @@ func try_capture(player):
 			else:
 				enemy += 1
 	if ally > 0 && enemy == 0:
-		print(player.name + " captured building")
+		print(player.get_name() + " captured building")
 		remove_from_group("RadiantBuilding")
 		remove_from_group("DireBuilding")
-		add_to_group(player.name + "Building")
+		add_to_group(player.get_name() + "Building")
 		polygon.set_color(player.color)
 		print("Owner " + str(owner))
 		if owner != "Neutral":
-			game.winner = player.name
+			game.winner = player.get_name()
