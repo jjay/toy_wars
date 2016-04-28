@@ -1,7 +1,6 @@
 
 extends Area2D
 
-onready var level = get_node("../Level")
 onready var game = get_node("/root/Game")
 onready var vars = get_node("/root/const")
 
@@ -24,10 +23,10 @@ func select_spawn_zones(card, action, color):
 	next_action = action
 	current_color = color
 
-	var group = game.current_player.get_name() + "Building"
+	var group = game.active_player.side + "Building"
 	var moves = []
 	for build in get_tree().get_nodes_in_group(group):
-		for move in level.find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type):
+		for move in game.level.find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type):
 			moves.append(move)
 	draw_moves(moves)
 	update_collision_shape(moves)
@@ -39,7 +38,7 @@ func select_unit(unit, action, color):
 	next_action = action
 	current_color = color
 	
-	var moves = level.find_possible_moves(unit.get_pos(), unit.card.moves, unit.unit_type)
+	var moves = game.level.find_possible_moves(unit.get_pos(), unit.card.moves, unit.unit_type)
 	#print("moves " + str(moves))
 	draw_moves(moves)
 	update_collision_shape(moves)
@@ -56,7 +55,7 @@ func select_target(unit, action, color):
 	
 	var targets = []
 	for target in get_tree().get_nodes_in_group("Unit"):
-		if target.owner == game.current_player:
+		if target.owner == game.active_player:
 			continue
 		if unit.get_grid_pos().distance_to(target.get_grid_pos()) > unit.card.radius:
 			continue
@@ -77,14 +76,14 @@ func draw_moves(moves):
 		var tile_instance = tile.instance()
 		add_child(tile_instance)
 		tile_instance.set_color(current_color)
-		tile_instance.set_pos(level.get_local_pos(move))
+		tile_instance.set_pos(game.level.get_local_pos(move))
 		selection_polygons.append(tile_instance)
 		
 
 
 func update_collision_shape(moves):
-	var size_x = level.node_size.x
-	var size_y = level.node_size.y
+	var size_x = game.level.node_size.x
+	var size_y = game.level.node_size.y
 	clear_shapes()
 	
 	for move in moves:
@@ -119,7 +118,7 @@ func _input_event(viewport, ev, shape_idx):
 	if ev.is_action_pressed("select"):
 		var target = current_selection
 		var action = next_action
-		var grid_pos = level.get_grid_pos(ev.pos)
+		var grid_pos = game.level.get_grid_pos(ev.pos)
 		clear_selection()
 		target.call(action, grid_pos)
 

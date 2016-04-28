@@ -20,7 +20,7 @@ func _ready():
 
 
 func _input_event(viewport, ev, shape_idx):
-	if owner != game.current_player:
+	if !owner.is_active:
 		return
 	if ev.is_action_pressed("select"):
 		if can_move:
@@ -32,6 +32,11 @@ func _input_event(viewport, ev, shape_idx):
 func get_grid_pos():
 	return game.level.get_grid_pos(get_pos())
 
+func set_grid_pos(grid_pos):
+	game.level.free_node(get_pos())
+	game.level.reserve_grid_node(grid_pos)
+	set_pos(game.level.get_local_pos(grid_pos))
+
 func select_move():
 	game.selection.select_unit(self, "move_unit", game.move_color)
 	
@@ -39,17 +44,19 @@ func select_attack():
 	game.selection.select_target(self, "attack_target", game.hit_color)
 
 	
-
+func remove():
+	game.level.free_node(get_pos())
+	get_parent().remove_child(self)
 	
 func move_unit(grid_pos):
 	if grid_pos.distance_to(get_grid_pos()) < 0.1:
 		call_deferred("select_attack")
 		return
 		
-	game.level.free_node(get_pos())
-	game.level.reserve_grid_node(grid_pos)
 	can_move = false
-	set_pos(game.level.get_local_pos(grid_pos))
+	set_grid_pos(grid_pos)
+	if owner != null:
+		owner.emit_signal("move_unit", self, grid_pos)
 	if can_attack:
 		select_attack()
 
@@ -65,6 +72,9 @@ func attack_target(grid_pos):
 	if target.lifes <= 0:
 		target.get_parent().remove_child(target)
 		game.level.free_grid_node(grid_pos)
+	
+	if owner != null:
+		owner.emit_signal("hit_unit", self, target)
 
 
 

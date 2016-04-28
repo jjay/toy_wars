@@ -10,6 +10,7 @@ onready var game = get_node("/root/Game")
 onready var polygon = get_node("Polygon")
 
 func _ready():
+	yield(game, "players_ready")
 	polygon.set_color(game.get(owner.to_lower() + "_color"))
 	add_to_group(owner + "Building")
 	add_to_group("Building")

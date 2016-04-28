@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://scripts/NetworkGame.gd" type="Script" id=1]
+[ext_resource path="res://scripts/RemotePlayer.gd" type="Script" id=2]
+[ext_resource path="res://scripts/LocalPlayer.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Table.gd" type="Script" id=4]
+[ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=5]
+[ext_resource path="res://buildings/base.tscn" type="PackedScene" id=6]
+[ext_resource path="res://buildings/building.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/selector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=9]
+
+[node name="Game" type="Node"]
+
+script/script = ExtResource( 1 )
+move_color = Color( 0, 0.519531, 0.00811768, 0.637274 )
+hit_color = Color( 0.84375, 0.118652, 0.118652, 0.497882 )
+hit_radius_color = Color( 0.976562, 0.354767, 0.383914, 0.483442 )
+spawn_color = Color( 0, 0.517647, 0.00784314, 0.635294 )
+radiant_color = Color( 0.785156, 0.0674744, 0.0674744, 1 )
+dire_color = Color( 0.0803223, 0.734375, 0.151859, 1 )
+neutral_color = Color( 0.59375, 0.59375, 0.59375, 1 )
+
+[node name="RemotePlayer" type="Node" parent="."]
+
+script/script = ExtResource( 2 )
+server_host = "127.0.0.1"
+server_port = 1234
+
+[node name="LocalPlayer" type="Node" parent="."]
+
+script/script = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+autostart = false
+
+[node name="Screen" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, -3 )
+
+[node name="Table" type="Node2D" parent="Screen"]
+
+script/script = ExtResource( 4 )
+
+[node name="Grid" parent="Screen/Table" instance=ExtResource( 5 )]
+
+[node name="Units" type="Node2D" parent="Screen/Table"]
+
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Dire" parent="Screen/Table/Units" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 112, 195 )
+transform/scale = Vector2( 0.5, 0.5 )
+owner = "Dire"
+
+[node name="Radiang" parent="Screen/Table/Units" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 448, 803 )
+transform/scale = Vector2( 0.5, 0.5 )
+owner = "Radiant"
+
+[node name="Building" parent="Screen/Table/Units" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 336, 579 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="Building1" parent="Screen/Table/Units" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 336, 195 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="Selection" parent="Screen/Table" instance=ExtResource( 8 )]
+
+linear_damp = 0.1
+
+[node name="InfoPanel" type="Node2D" parent="Screen"]
+
+transform/pos = Vector2( 64, 1091 )
+
+[node name="GUI" parent="Screen" instance=ExtResource( 9 )]
+
+
