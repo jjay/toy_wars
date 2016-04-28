@@ -27,7 +27,7 @@ start_money = 6
 [node name="RemotePlayer" type="Node" parent="."]
 
 script/script = ExtResource( 2 )
-server_host = "127.0.0.1"
+server_host = "95.143.113.85"
 server_port = 1234
 
 [node name="LocalPlayer" type="Node" parent="."]

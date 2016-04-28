@@ -29,7 +29,6 @@ var winner
 var turn = 0
 
 func _ready():
-	play()
 	print("Game Ready")
 	gui.hide_header()
 	gui.set_text("Connecting...")
@@ -51,6 +50,7 @@ func _ready():
 	end_turn_btn.connect("pressed", local_player, "force_end_turn")
 	screen.get_node("InfoPanel").add_child(local_player.hand)
 	
+	play()
 	
 func play():
 	gui.show_body()
