@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scripts/NetworkGame.gd" type="Script" id=1]
 [ext_resource path="res://scripts/RemotePlayer.gd" type="Script" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://buildings/base.tscn" type="PackedScene" id=6]
 [ext_resource path="res://buildings/building.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/selector.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=9]
+[ext_resource path="res://textures/play.atex" type="Texture" id=9]
+[ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node"]
 
@@ -20,6 +21,8 @@ spawn_color = Color( 0, 0.517647, 0.00784314, 0.635294 )
 radiant_color = Color( 0.785156, 0.0674744, 0.0674744, 1 )
 dire_color = Color( 0.0803223, 0.734375, 0.151859, 1 )
 neutral_color = Color( 0.59375, 0.59375, 0.59375, 1 )
+minimum_turns = 4
+start_money = 6
 
 [node name="RemotePlayer" type="Node" parent="."]
 
@@ -50,28 +53,26 @@ script/script = ExtResource( 4 )
 
 [node name="Units" type="Node2D" parent="Screen/Table"]
 
-__meta__ = { "_editor_collapsed":true }
-
 [node name="Dire" parent="Screen/Table/Units" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 112, 195 )
+transform/pos = Vector2( 192, 195 )
 transform/scale = Vector2( 0.5, 0.5 )
 owner = "Dire"
 
 [node name="Radiang" parent="Screen/Table/Units" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 448, 803 )
+transform/pos = Vector2( 448, 835 )
 transform/scale = Vector2( 0.5, 0.5 )
 owner = "Radiant"
 
 [node name="Building" parent="Screen/Table/Units" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 336, 579 )
+transform/pos = Vector2( 320, 579 )
 transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="Building1" parent="Screen/Table/Units" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 336, 195 )
+transform/pos = Vector2( 448, 195 )
 transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="Selection" parent="Screen/Table" instance=ExtResource( 8 )]
@@ -82,6 +83,20 @@ linear_damp = 0.1
 
 transform/pos = Vector2( 64, 1091 )
 
-[node name="GUI" parent="Screen" instance=ExtResource( 9 )]
+[node name="EndTurn" type="TextureButton" parent="Screen"]
+
+visibility/visible = false
+margin/left = 528.0
+margin/top = 1043.0
+margin/right = 643.0
+margin/bottom = 1157.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+textures/normal = ExtResource( 9 )
+
+[node name="GUI" parent="Screen" instance=ExtResource( 10 )]
 
 

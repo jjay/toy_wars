@@ -1,5 +1,7 @@
 extends Area2D
 
+onready var game = get_node("/root/Game")
+
 onready var header = get_node("Header")
 onready var body = get_node("Body")
 onready var turn_label = get_node("Header/TurnValue")
@@ -8,6 +10,15 @@ onready var time_label = get_node("Header/TimeValue")
 onready var text_label = get_node("Body/TextValue")
 onready var button = get_node("Body/Button")
 
+
+func _ready():
+	set_process(true)
+
+func _process(delta):
+	set_money(str(game.local_player.money))
+	if game.timer != null:
+		set_time(str(ceil(game.timer.get_time_left())))
+	
 
 func set_text(text):
 	text_label.set_text(text)

@@ -128,6 +128,9 @@ func process_turn():
 	yield(self, "start_turn")
 	gui.hide_body()
 	gui.show_header()
+
+func cleanup():
+	pass
 	
 	
 	

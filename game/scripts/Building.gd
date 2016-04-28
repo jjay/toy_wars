@@ -10,16 +10,21 @@ onready var game = get_node("/root/Game")
 onready var polygon = get_node("Polygon")
 
 func _ready():
-	yield(game, "players_ready")
+	game.connect("players_ready", self, "on_players_ready")
+
+func on_players_ready():
 	polygon.set_color(game.get(owner.to_lower() + "_color"))
-	add_to_group(owner + "Building")
-	add_to_group("Building")
+	add_to_group(owner.to_lower() + "_building")
+	add_to_group("building")
+	
 	current_owner = game.get(owner.to_lower() + "_player")
 
+func is_player_base():
+	return owner != "Neutral"
 
 func try_capture(player):
 	if player == current_owner:
-		return
+		return false
 		
 	var grid_pos = game.level.get_grid_pos(get_pos())
 	var enemy = 0
@@ -31,11 +36,11 @@ func try_capture(player):
 			else:
 				enemy += 1
 	if ally > 0 && enemy == 0:
-		print(player.get_name() + " captured building")
-		remove_from_group("RadiantBuilding")
-		remove_from_group("DireBuilding")
-		add_to_group(player.get_name() + "Building")
+		print(player.side + " captured building")
+		remove_from_group("radiant_building")
+		remove_from_group("dire_building")
+		add_to_group(player.side.to_lower() + "_building")
 		polygon.set_color(player.color)
-		print("Owner " + str(owner))
-		if owner != "Neutral":
-			game.winner = player.get_name()
+		return true
+	
+	return false

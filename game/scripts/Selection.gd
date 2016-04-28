@@ -23,7 +23,7 @@ func select_spawn_zones(card, action, color):
 	next_action = action
 	current_color = color
 
-	var group = game.active_player.side + "Building"
+	var group = game.active_player.side.to_lower() + "_building"
 	var moves = []
 	for build in get_tree().get_nodes_in_group(group):
 		for move in game.level.find_possible_moves(build.get_pos(), 1, card.unit_instance.unit_type):

@@ -47,7 +47,7 @@ func opponent_hit_unit(unit, target):
 	if target.lifes <= 0:
 		target.remove()
 #		game.units.remove_child(target)
-	
+
 func process_turn():
 	var gui = game.gui
 	gui.set_turn("Your")
@@ -60,7 +60,28 @@ func process_turn():
 	gui.hide_body()
 	gui.show_header()
 	game.timer.start()
+	game.end_turn_btn.show()
 	yield(game.timer, "timeout")
+	game.end_turn_btn.hide()
 	emit_signal("end_turn")
 	
+func force_end_turn():
+	game.timer.stop()
+	game.timer.emit_signal("timeout")	
+
+func show_win():
+	game.gui.hide_header()
+	game.gui.show_body()
+	game.gui.set_text("You win!")
+	game.gui.show_button()
+
+func show_lose():
+	game.gui.hide_header()
+	game.gui.show_body()
+	game.gui.set_text("You LOOOSE!!!!")
+	game.gui.hide_button()
+
+func cleanup():
+	for child in hand.get_children():
+		hand.remove_child(child)
 	
