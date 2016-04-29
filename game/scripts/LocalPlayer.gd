@@ -55,12 +55,7 @@ func opponent_move_unit(unit, pos):
 	unit.set_grid_pos(pos)
 	
 func opponent_hit_unit(unit, target):
-	target.lifes -= unit.card.attack
-	if target.lifes <= 0:
-		target.remove()
-	else:
-		target.health_bar.add_missed_life(unit.card.attack)
-#		game.units.remove_child(target)
+	target.take_damage(unit.card.attack)
 
 func process_turn():
 	generate_cards()

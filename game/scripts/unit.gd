@@ -5,6 +5,7 @@ export(String, "Soldier", "Helicopter", "Tank") var unit_type
 onready var game = get_node("/root/Game")
 onready var polygon = get_node("Polygon")
 onready var health_bar = get_node("HealthBar")
+onready var animator = get_node("AnimationPlayer")
 var can_move = true
 var can_attack = true
 var owner
@@ -74,16 +75,22 @@ func attack_target(grid_pos):
 			target = t
 			break
 	
-	target.lifes -= card.attack
-	if target.lifes <= 0:
-		target.get_parent().remove_child(target)
-		game.level.free_grid_node(grid_pos)
-	else:
-		target.health_bar.add_missed_life(card.attack)
-		target.health_bar.set_damage_value(0)
-		
 	if owner != null:
 		owner.emit_signal("hit_unit", self, target)
+		
+	target.take_damage(card.attack)
+	
+func take_damage(dmg):
+	lifes -= dmg
+	health_bar.add_missed_life(card.attack)
+	health_bar.set_damage_value(0)
+	if lifes <= 0:
+		animator.play("die")
+		yield(animator, "finished")
+		remove()
+
+		
+	
 
 
 

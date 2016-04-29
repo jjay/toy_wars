@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/RemotePlayer.gd" type="Script" id=2]
 [ext_resource path="res://scripts/LocalPlayer.gd" type="Script" id=3]
 [ext_resource path="res://scripts/Table.gd" type="Script" id=4]
-[ext_resource path="res://levels/first_level.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/second_level.tscn" type="PackedScene" id=5]
 [ext_resource path="res://buildings/base.tscn" type="PackedScene" id=6]
 [ext_resource path="res://buildings/building.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/selector.tscn" type="PackedScene" id=8]
@@ -37,7 +37,7 @@ script/script = ExtResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 15.0
+wait_time = 20.0
 one_shot = true
 autostart = false
 
@@ -55,7 +55,7 @@ script/script = ExtResource( 4 )
 
 [node name="Dire" parent="Screen/Table/Units" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 192, 195 )
+transform/pos = Vector2( 192, 115 )
 transform/scale = Vector2( 0.5, 0.5 )
 linear_damp = 0.1
 owner = "Dire"
@@ -69,13 +69,13 @@ owner = "Radiant"
 
 [node name="Building" parent="Screen/Table/Units" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 320, 579 )
+transform/pos = Vector2( 192, 451 )
 transform/scale = Vector2( 0.5, 0.5 )
 linear_damp = 0.1
 
 [node name="Building1" parent="Screen/Table/Units" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 448, 195 )
+transform/pos = Vector2( 576, 451 )
 transform/scale = Vector2( 0.5, 0.5 )
 linear_damp = 0.1
 
