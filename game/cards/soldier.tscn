@@ -5,7 +5,8 @@
 [node name="Card" instance=ExtResource( 1 )]
 
 linear_damp = 0.1
-radius = 1
+defence = 2
+radius = 2
 moves = 1
 
 

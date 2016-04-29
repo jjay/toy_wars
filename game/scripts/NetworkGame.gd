@@ -87,7 +87,6 @@ func play():
 	while want_play_more():
 		selection.clear_selection()
 		for unit in get_tree().get_nodes_in_group("Unit"):
-			unit.health_bar.set_damage_value(0)
 			unit.can_move = true
 			unit.can_attack = true
 		

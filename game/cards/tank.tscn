@@ -10,7 +10,7 @@ linear_damp = 0.1
 unit = ExtResource( 2 )
 cost = 2
 attack = 2
-defence = 8
+defence = 6
 radius = 3
 moves = 2
 

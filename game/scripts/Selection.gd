@@ -107,6 +107,8 @@ func clear_selection():
 	clear_shapes()
 	for tile in selection_polygons:
 		remove_child(tile)
+	for unit in get_tree().get_nodes_in_group("Unit"):
+		unit.health_bar.set_damage_value(0)
 	selection_polygons.clear()	
 	
 	

@@ -21,7 +21,7 @@ spawn_color = Color( 0, 0.517647, 0.00784314, 0.635294 )
 radiant_color = Color( 0.785156, 0.0674744, 0.0674744, 1 )
 dire_color = Color( 0.0803223, 0.734375, 0.151859, 1 )
 neutral_color = Color( 0.59375, 0.59375, 0.59375, 1 )
-minimum_turns = 4
+minimum_turns = 10
 start_money = 6
 
 [node name="RemotePlayer" type="Node" parent="."]
@@ -37,7 +37,7 @@ script/script = ExtResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 autostart = false
 
@@ -57,23 +57,27 @@ script/script = ExtResource( 4 )
 
 transform/pos = Vector2( 192, 195 )
 transform/scale = Vector2( 0.5, 0.5 )
+linear_damp = 0.1
 owner = "Dire"
 
 [node name="Radiang" parent="Screen/Table/Units" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 448, 835 )
 transform/scale = Vector2( 0.5, 0.5 )
+linear_damp = 0.1
 owner = "Radiant"
 
 [node name="Building" parent="Screen/Table/Units" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 320, 579 )
 transform/scale = Vector2( 0.5, 0.5 )
+linear_damp = 0.1
 
 [node name="Building1" parent="Screen/Table/Units" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 448, 195 )
 transform/scale = Vector2( 0.5, 0.5 )
+linear_damp = 0.1
 
 [node name="Selection" parent="Screen/Table" instance=ExtResource( 8 )]
 
@@ -98,5 +102,7 @@ toggle_mode = false
 textures/normal = ExtResource( 9 )
 
 [node name="GUI" parent="Screen" instance=ExtResource( 10 )]
+
+linear_damp = 0.1
 
 
