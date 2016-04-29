@@ -25,7 +25,9 @@ func set_side(the_side):
 
 func set_active(value):
 	is_active = value
-	
+
+func buildings_count():
+	return get_tree().get_nodes_in_group(side.to_lower() + "_building").size()
 
 func opponent_play_card(card, pos):
 	pass

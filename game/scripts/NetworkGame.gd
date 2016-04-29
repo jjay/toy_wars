@@ -87,6 +87,7 @@ func play():
 	while want_play_more():
 		selection.clear_selection()
 		for unit in get_tree().get_nodes_in_group("Unit"):
+			unit.health_bar.set_damage_value(0)
 			unit.can_move = true
 			unit.can_attack = true
 		
@@ -97,6 +98,7 @@ func play():
 		active_player.set_active(false)
 		active_player = players[turn % 2]
 		active_player.set_active(true)
+
 	
 	if local_player == winner:
 		local_player.show_win()
@@ -132,9 +134,10 @@ func want_play_more():
 			winner = active_player
 			return false
 	
-	var local = get_tree().get_nodes_in_group(local_player.side + "_building").size()
-	var remote = get_tree().get_nodes_in_group(remote_player.side + "_building").size()
+	var local = local_player.buildings_count()
+	var remote = remote_player.buildings_count()
 	local_player.money += local
+	local_player.money += int(floor((timer.get_time_left() + 2 ) / 5))
 
 	if turn >= minimum_turns && local != remote:
 		if local > remote:
