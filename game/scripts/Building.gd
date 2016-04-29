@@ -12,12 +12,15 @@ onready var polygon = get_node("Polygon")
 func _ready():
 	game.connect("players_ready", self, "on_players_ready")
 
-func on_players_ready():
+func on_players_ready(players):
 	polygon.set_color(game.get(owner.to_lower() + "_color"))
 	add_to_group(owner.to_lower() + "_building")
 	add_to_group("building")
 	
-	current_owner = game.get(owner.to_lower() + "_player")
+	for player in players:
+		if player.side == owner:
+			current_owner = player
+			break
 
 func is_player_base():
 	return owner != "Neutral"

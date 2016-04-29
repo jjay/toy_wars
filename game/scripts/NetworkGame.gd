@@ -1,6 +1,6 @@
 extends Node
 
-signal players_ready
+signal players_ready(players)
 
 export(Color) var move_color
 export(Color) var hit_color
@@ -81,7 +81,7 @@ func play():
 		players = [remote_player, local_player]
 	active_player = players[0]
 	active_player.set_active(true)
-	emit_signal("players_ready")
+	emit_signal("players_ready", players)
 	
 	turn = 0
 	while want_play_more():

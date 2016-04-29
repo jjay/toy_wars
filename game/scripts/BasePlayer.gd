@@ -8,8 +8,8 @@ var side = "Dire"
 signal ready_to_start
 signal start_turn
 signal end_turn
-signal play_card(card)
-signal move_unit(unit, position)
+signal play_card(card, pos)
+signal move_unit(unit, pos)
 signal hit_unit(unit, target)
 
 

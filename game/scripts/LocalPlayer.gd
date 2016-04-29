@@ -19,6 +19,9 @@ func _init():
 	randomize()
 	deck = DECKS[floor(rand_range(0, DECKS.size()))]
 
+func _ready():
+	connect("play_card", self, "check_card_costs")
+
 
 func add_card(card_name, update_position=false):
 	var path = "res://cards/" + card_name + ".tscn"
@@ -96,4 +99,10 @@ func show_lose():
 func cleanup():
 	for child in hand.get_children():
 		hand.remove_child(child)
-	
+
+func check_card_costs(card, pos):
+	for card in hand.get_children():
+		if card.cost > money:
+			card.set_opacity(0.5)
+		else:
+			card.set_opacity(1)
