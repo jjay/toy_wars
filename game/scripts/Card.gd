@@ -44,13 +44,36 @@ func _ready():
 	attack_label.set_text(str(attack))
 	defence_label.set_text(str(defence))
 
+var drag = null
 func _input_event( viewport, event, shape_idx ):
+	#print("_input_event")
+	#if drag != null:
+	#	return
+	#if event.type == InputEvent.MOUSE_BUTTON && event.is_pressed():
+	#	drag = Node2D.new()
+	#	get_parent().add_child(drag)
+	#	drag.set_pos(get_pos())
+	#	set_process_input(true)
+	#return
+	
 	if !player.is_active:
 		return
 	if cost > player.money:
 		return
 	if event.is_action_pressed("select"):
 		game.selection.select_spawn_zones(self, "play", game.spawn_color)
+
+func _input(event):
+	print("_input")
+	if drag == null:
+		return
+	if event.type  == InputEvent.MOUSE_MOTION:
+		translate(event.relative_pos)
+	if event.type == InputEvent.MOUSE_BUTTON && !event.is_pressed():
+		get_parent().remove_child(drag)
+		drag = null
+		set_process_input(false)
+
 
 func play(grid_pos):
 	game.active_player.money -= cost

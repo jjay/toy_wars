@@ -1,21 +1,45 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://textures/soldier.atex" type="Texture" id=1]
+[ext_resource path="res://textures/buttons.atex" type="Texture" id=1]
 [ext_resource path="res://cards/soldier.tscn" type="PackedScene" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Hand" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="card_slot_0" type="Sprite" parent="."]
 
+transform/pos = Vector2( -193, -1 )
 texture = ExtResource( 1 )
+vframes = 3
+hframes = 4
+frame = 10
 
-[node name="Sprite1" type="Sprite" parent="."]
+[node name="card_slot_1" type="Sprite" parent="."]
 
-transform/pos = Vector2( 272, 0 )
+transform/pos = Vector2( -65, -33 )
 texture = ExtResource( 1 )
+vframes = 3
+hframes = 4
+frame = 10
 
-[node name="Card" parent="." instance=ExtResource( 2 )]
+[node name="card_slot_2" type="Sprite" parent="."]
 
-transform/pos = Vector2( 544, 0 )
+transform/pos = Vector2( 63, -33 )
+texture = ExtResource( 1 )
+vframes = 3
+hframes = 4
+frame = 10
+
+[node name="card_slot_3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 191, -1 )
+texture = ExtResource( 1 )
+vframes = 3
+hframes = 4
+frame = 10
+
+[node name="Card" parent="card_slot_3" instance=ExtResource( 2 )]
+
+transform/scale = Vector2( 0.3, 0.3 )
+linear_damp = 0.1
 
 
