@@ -1,6 +1,6 @@
 extends Node
 
-signal players_ready
+signal players_ready(players)
 
 export(Color) var move_color
 export(Color) var hit_color
@@ -29,7 +29,6 @@ var winner
 var turn = 0
 
 func _ready():
-	play()
 	print("Game Ready")
 	gui.hide_header()
 	gui.set_text("Connecting...")
@@ -51,6 +50,7 @@ func _ready():
 	end_turn_btn.connect("pressed", local_player, "force_end_turn")
 	screen.get_node("InfoPanel").add_child(local_player.hand)
 	
+	play()
 	
 func play():
 	gui.show_body()
@@ -81,7 +81,7 @@ func play():
 		players = [remote_player, local_player]
 	active_player = players[0]
 	active_player.set_active(true)
-	emit_signal("players_ready")
+	emit_signal("players_ready", players)
 	
 	turn = 0
 	while want_play_more():
@@ -97,6 +97,7 @@ func play():
 		active_player.set_active(false)
 		active_player = players[turn % 2]
 		active_player.set_active(true)
+
 	
 	if local_player == winner:
 		local_player.show_win()
@@ -132,9 +133,10 @@ func want_play_more():
 			winner = active_player
 			return false
 	
-	var local = get_tree().get_nodes_in_group(local_player.side + "_building").size()
-	var remote = get_tree().get_nodes_in_group(remote_player.side + "_building").size()
+	var local = local_player.buildings_count()
+	var remote = remote_player.buildings_count()
 	local_player.money += local
+	local_player.money += int(floor((timer.get_time_left() + 2 ) / 5))
 
 	if turn >= minimum_turns && local != remote:
 		if local > remote:

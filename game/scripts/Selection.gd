@@ -60,14 +60,12 @@ func select_target(unit, action, color):
 		if unit.get_grid_pos().distance_to(target.get_grid_pos()) > unit.card.radius:
 			continue
 		targets.append(target.get_grid_pos())
+		target.health_bar.show()
+		target.health_bar.set_damage_value(unit.card.attack)
 		
 		
 	draw_moves(targets)
 	update_collision_shape(targets)
-		
-		
-
-
 
 
 func draw_moves(moves):
@@ -109,6 +107,8 @@ func clear_selection():
 	clear_shapes()
 	for tile in selection_polygons:
 		remove_child(tile)
+	for unit in get_tree().get_nodes_in_group("Unit"):
+		unit.health_bar.set_damage_value(0)
 	selection_polygons.clear()	
 	
 	

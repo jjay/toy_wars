@@ -4,6 +4,8 @@ export(String, "Soldier", "Helicopter", "Tank") var unit_type
 
 onready var game = get_node("/root/Game")
 onready var polygon = get_node("Polygon")
+onready var health_bar = get_node("HealthBar")
+onready var animator = get_node("AnimationPlayer")
 var can_move = true
 var can_attack = true
 var owner
@@ -16,6 +18,9 @@ signal deselected
 func _ready():
 	add_to_group("Unit")
 	polygon.set_color(owner.color)
+	health_bar.set_total_life(card.defence)
+	health_bar.set_damage_value(0)
+	health_bar.set_missed_life(0)
 
 
 
@@ -50,13 +55,15 @@ func remove():
 	
 func move_unit(grid_pos):
 	if grid_pos.distance_to(get_grid_pos()) < 0.1:
-		call_deferred("select_attack")
+		if can_attack:
+			call_deferred("select_attack")
 		return
 		
 	can_move = false
 	set_grid_pos(grid_pos)
 	if owner != null:
 		owner.emit_signal("move_unit", self, grid_pos)
+		
 	if can_attack:
 		select_attack()
 
@@ -68,13 +75,22 @@ func attack_target(grid_pos):
 			target = t
 			break
 	
-	target.lifes -= card.attack
-	if target.lifes <= 0:
-		target.get_parent().remove_child(target)
-		game.level.free_grid_node(grid_pos)
-	
 	if owner != null:
 		owner.emit_signal("hit_unit", self, target)
+		
+	target.take_damage(card.attack)
+	
+func take_damage(dmg):
+	lifes -= dmg
+	health_bar.add_missed_life(card.attack)
+	health_bar.set_damage_value(0)
+	if lifes <= 0:
+		animator.play("die")
+		yield(animator, "finished")
+		remove()
+
+		
+	
 
 
 
