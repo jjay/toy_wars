@@ -29,7 +29,6 @@ class User(object):
                 users.remove(self)
                 print "Disconnected"
                 break
-            print "recv> " + data
             packets += data
             packets = packets.strip("\n\r")
             if packets.endswith("}"):
@@ -38,7 +37,7 @@ class User(object):
     
     def send(self, msg):
         packet = json.dumps(msg)
-        print "send> " + packet
+        print "%s -> %s" % (self.user_id, packet)
         self.sock.send(packet + "\n\n")
         
     def send_msg(self, msg, *args):
@@ -48,9 +47,8 @@ class User(object):
         self.send({"err":err})
         
     def process_packets(self, packets):
-        print "[debug] processing packets..."
         for packet in packets.split("\n\n"):
-            print "[debug] found packet " + packet
+	    "%s <- %s" % (self.user_id, packet)
             try:
                 msg = json.loads(packet)
                 action = "handle_" + msg["msg"]
